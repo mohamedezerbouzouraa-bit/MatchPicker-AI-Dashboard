@@ -1,35 +1,56 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-import google.genai as genai
+import os
+import google.generativeai as genai
+from google.api_core.exceptions import ResourceExhausted
 
 app = Flask(__name__)
 CORS(app)
 
-API_KEY = "ttttttttttttttt"
-client = genai.Client(api_key=API_KEY)
+# الأفضل: put this in environment variable instead of hardcoding
+os.environ["GOOGLE_API_KEY"] = "AIzaSyBH4SwFBx3e4_z6PoteQFv2y3a_fOtf3ko"
+genai.configure(api_key=os.environ["GOOGLE_API_KEY"])
+
+MODEL_NAME = "gemini-2.5-flash-lite"
+model = genai.GenerativeModel(MODEL_NAME)
+
+SYSTEM_PROMPT = """
+You are a Football Match Recommendation AI.
+
+Your role:
+- Suggest football matches based on user descriptions
+- Understand preferences like teams, leagues, countries, or playing style
+- Recommend relevant real or hypothetical matches from global football
+- Explain why each match is relevant
+- Keep responses short, structured, and useful
+- If user input is unclear, ask a follow-up question
+"""
 
 @app.route("/chat", methods=["POST"])
 def chat():
     data = request.json
-    user_input = data.get("message", "")
+    user_input = data.get("message", "").strip()
 
     if not user_input:
-        return jsonify({"reply": "I didn't catch that."}), 400
+        return jsonify({"reply": "Empty message received."}), 400
 
     try:
-        # 1.5-flash is highly stable for free tier keys
-        response = client.models.generate_content(
-            model="gemini-1.5-flash", 
-            contents=user_input
-        )
+        full_prompt = SYSTEM_PROMPT + "\n\nUser request: " + user_input
+        response = model.generate_content(full_prompt)
+
         return jsonify({"reply": response.text})
+
+    except ResourceExhausted:
+        return jsonify({"reply": "Quota exceeded. Try again later."}), 429
+
     except Exception as e:
-        print(f"Error: {e}")
-        return jsonify({"reply": "API Error. Check if your key is valid in the terminal."}), 500
+        print("Error:", e)
+        return jsonify({"reply": "Server error occurred."}), 500
+
 
 @app.route("/")
-def index():
-    return "Football Chatbot Server is Live!"
+def home():
+    return "Football Match Recommendation Server Running"
 
 if __name__ == "__main__":
-    app.run(host='127.0.0.1', port=5000, debug=True)
+    app.run(host="127.0.0.1", port=5000, debug=True)
