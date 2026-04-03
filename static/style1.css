@@ -1,0 +1,94 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
+
+.bg-blur {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #0d0d0d; 
+  z-index: -1;
+}
+
+.bg-blur::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+}
+
+.welcome-screen {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.welcome-box {
+  width: 70%;
+  max-width: 900px;
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+}
+
+.welcome-box h1 {
+  transform: translateY(-70px);
+  font-family: "Brush Script MT", cursive;
+  font-weight: normal;
+  font-size: 100px;
+  margin-bottom: 40px;
+}
+
+.purple-letter {
+    color: #8b5cf6; 
+}
+
+.signature-text {
+  position: fixed;  
+  bottom: 20px;    
+  right: 30px;   
+  
+  font-family: "Andalus", cursive;
+  font-size: 24px; 
+  color: white;
+  margin: 0;       
+  text-align: right;
+  z-index: 10;    
+}
+
+.welcome-box button {
+  padding: 12px 60px;    
+  font-size: 20px;       
+  font-weight: 600;       
+  
+  border: 2px solid #8b5cf6;
+  border-radius: 50px;      
+  
+  background: transparent;
+  color: #8b5cf6;
+  
+  cursor: pointer;
+  transition: 0.3s all ease;
+}
+
+.welcome-box button:hover {
+  background: #8b5cf6;
+  color: white;
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
+}
+
+.welcome-box button:hover {
+  background: white;
+  color: black;
+}
