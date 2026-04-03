@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Majors | Match Picker</title>
+    <link rel="stylesheet" href="style4.css">
+</head>
+<body>
+    <div class="bg-blur"></div>
+
+    <div class="navbar">
+        <h2>🏆 Elite <span class="purple-text">Comps info</span></h2>
+        <div class="menu">
+            <span onclick="window.location.href='index.html'">Games</span>
+            <span class="purple-text">Majors</span>
+            <span onclick="window.location.href='index3.html'">About Me</span>
+        </div>
+    </div>
+
+    <div class="majors-container">
+        <div class="comp-grid">
+    <div class="comp-card" onclick="showStats('Champions League 24/25', '245', '72', 'PSG')">
+        <img src="images/ss.jpg" alt="UCL">
+        <h4>Champions League 2024/2025</h4>
+    </div>
+
+    <div class="comp-card" onclick="showStats('World Cup 2018', '169', '64', 'France')">
+        <img src="images/ww.webp" alt="World Cup">
+        <h4>World Cup 2018</h4>
+    </div>
+
+    <div class="comp-card" onclick="showStats('Premier League 24/25', '850+', '280+', 'Liverpool')">
+        <img src="images/fz.webp" alt="PL">
+        <h4>Premier League 2024/2025</h4>
+    </div>
+
+    <div class="comp-card" onclick="showStats('World Cup 2014', '171', '64', 'Germany')">
+        <img src="images/wc.jpg" alt="World Cup 14">
+        <h4>World Cup 2014</h4>
+    </div>
+
+    <div class="comp-card" onclick="showStats('Premier League 22/23', '1084', '380', 'Man City')">
+        <img src="images/px.jpg" alt="PL">
+        <h4>Premier League 2022/2023</h4>
+    </div>
+
+    <div class="comp-card" onclick="showStats('La Liga 17/18', '1024', '380', 'Barcelona')">
+        <img src="images/l1.webp" alt="La Liga">
+        <h4>La Liga 2017/2018</h4>
+    </div>
+
+    <div class="comp-card" onclick="showStats('Tunisian League 21/22', '242', '164', 'Espérance de Tunis')">
+        <img src="images/l.jpg" alt="LP1">
+        <h4>Tunisian League 2021/2022</h4>
+    </div>
+</div>
+
+        <div id="infoPanel" class="info-panel">
+            <h3 id="compName" class="purple-text">Select a Competition</h3>
+            <div class="stat-row"><span>Goals:</span> <b id="statGoals">-</b></div>
+            <div class="stat-row"><span>Matches:</span> <b id="statMatches">-</b></div>
+            <div class="stat-row"><span>Winner:</span> <b id="statWinner">-</b></div>
+            <button onclick="hideStats()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        function showStats(name, goals, matches, winner) {
+            document.getElementById('compName').innerText = name;
+            document.getElementById('statGoals').innerText = goals;
+            document.getElementById('statMatches').innerText = matches;
+            document.getElementById('statWinner').innerText = winner;
+            document.getElementById('infoPanel').classList.add('show');
+        }
+
+        function hideStats() {
+            document.getElementById('infoPanel').classList.remove('show');
+        }
+    </script>
+</body>
+</html>
