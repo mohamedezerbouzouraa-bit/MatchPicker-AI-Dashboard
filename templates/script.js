@@ -15,7 +15,6 @@ const matches = [
     { title: "Tottenham vs Man United", time: "Dec 01, 15:00", img: "images/zzz.avif", video: "https://www.youtube.com/embed/VIDEO_ID" }];
 
 const container = document.getElementById("matches");
-
 function displayMatches() {
     if(!container) return;
     container.innerHTML = ""; 
