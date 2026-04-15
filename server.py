@@ -7,7 +7,6 @@ from google.api_core.exceptions import ResourceExhausted
 app = Flask(__name__)
 CORS(app)
 
-# الأفضل: put this in environment variable instead of hardcoding
 os.environ["GOOGLE_API_KEY"] = "AIzaSyBH4SwFBx3e4_z6PoteQFv2y3a_fOtf3ko"
 genai.configure(api_key=os.environ["GOOGLE_API_KEY"])
 
