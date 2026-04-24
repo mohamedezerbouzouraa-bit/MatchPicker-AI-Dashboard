@@ -5,8 +5,7 @@ body, html {
   font-family: 'Segoe UI', Roboto, sans-serif;
   background-color: #0d0d0d; 
   color: white;
-  overflow-x: hidden;
-}
+  overflow-x: hidden;}
 .bg-blur {
   position: fixed;
   top: 0;
