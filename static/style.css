@@ -15,7 +15,6 @@ body, html {
   height: 100%;
   background-color: #0d0d0d; 
   z-index: -1;}
-
 .navbar {
   display: flex;
   justify-content: space-between;
